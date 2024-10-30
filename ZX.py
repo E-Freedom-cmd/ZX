@@ -57,8 +57,9 @@ def main():
     st.subheader("Key Metrics Comparison")
 
     metrics_data = {
-        'Metric': ['Total EMI Paid', 'Total Interest/Rental Paid', 'Total Principal/Buyback Paid', 'Total Payment', 'Bank Profit'],
+        'Metric': ['Monthly Payment', 'Total EMI Paid', 'Total Interest/Rental Paid', 'Total Principal/Buyback Paid', 'Total Payment', 'Bank Profit'],
         'Zephara Xcel Model (INR)': [
+            zx_metrics['monthly_payment'],
             zx_metrics['total_emi_paid'],
             zx_metrics['total_rental_income'],
             zx_metrics['total_buyback_amount'],
@@ -66,6 +67,7 @@ def main():
             zx_metrics['bank_profit']
         ],
         'Traditional Loan Model (INR)': [
+            traditional_metrics['monthly_payment'],
             traditional_metrics['total_emi_paid'],
             traditional_metrics['total_interest_paid'],
             traditional_metrics['total_principal_paid'],
@@ -175,6 +177,7 @@ def zx_simulator(property_price, customer_initial_contribution, annual_rental_yi
     bank_profit = total_rental_income  # In ZX model, bank profit is the rental income
 
     metrics = {
+        'monthly_payment': EMI,
         'total_emi_paid': total_emi_paid,
         'total_rental_income': total_rental_income,
         'total_buyback_amount': total_buyback_amount,
@@ -230,6 +233,7 @@ def traditional_loan_simulator(principal_amount, annual_interest_rate, loan_tenu
     bank_profit = total_interest_paid  # In traditional loan, bank profit is the interest paid
 
     metrics = {
+        'monthly_payment': EMI,
         'total_emi_paid': total_emi_paid,
         'total_interest_paid': total_interest_paid,
         'total_principal_paid': total_principal_paid,
@@ -331,3 +335,4 @@ def download_data(zx_df, traditional_df):
 
 if __name__ == '__main__':
     main()
+
